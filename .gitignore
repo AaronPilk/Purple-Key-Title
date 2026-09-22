@@ -1,0 +1,5 @@
+.DS_Store
+_review/
+*.zip
+__pycache__/
+*.pyc
