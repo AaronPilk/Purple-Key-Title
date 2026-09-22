@@ -24,10 +24,10 @@ SITE = {
     "domain": "purplekeytitle.com",
     "url": "https://purplekeytitle.com",
     "email": "orders@purplekeytitle.com",
-    # Awaiting client confirmation. Set to the real number and rebuild; every
-    # tel: link, footer line and schema block below reads from here.
-    "phone": "",
-    "phone_display": "Phone number coming soon",
+    # Confirmed by the client 22 Sep 2026. Every tel: link, footer line and
+    # schema block below reads from here.
+    "phone": "704-627-3031",
+    "phone_display": "704-627-3031",
     "region": "South Carolina",
     "region_abbr": "SC",
     "underwriter": "WFG National Title Insurance Company",
@@ -56,7 +56,7 @@ numbers, wire instructions or other sensitive financial details by email.
 
 ORDER_HREF = "mailto:%s?subject=%s&body=%s" % (
     SITE["email"],
-    urllib.parse.quote("Title Order Request"),
+    urllib.parse.quote("New Title Order - Purple Key Title."),
     urllib.parse.quote(ORDER_BODY),
 )
 ASK_HREF = "mailto:%s?subject=%s" % (SITE["email"], urllib.parse.quote("Question for Purple Key Title & Escrow"))
@@ -84,8 +84,8 @@ SERVICES = [
                 "dependable title insurance designed to help protect ownership and reduce the risk of "
                 "covered title problems after closing. We work closely with the professionals involved "
                 "in the transaction to help keep the process clear, organized, and moving forward.",
-        "alt": "A pale blue South Carolina cottage with a metal roof, white picket fence and flowering "
-               "shrubs along the front walk",
+        "alt": "A newly built two-storey home with stone and lap siding on a quiet residential "
+               "street",
         "included": [
             ("Title search and examination",
              "A review of the public record for ownership history, liens, judgments, easements, "
@@ -116,8 +116,8 @@ SERVICES = [
                 "Purple Key provides responsive title support designed for repeat transactions, changing "
                 "timelines, and investment-focused needs. Our goal is to help identify title issues early, "
                 "protect ownership, and keep acquisitions moving efficiently.",
-        "alt": "A brick South Carolina home with white columns, azaleas in bloom and mature oaks along a "
-               "circular drive",
+        "alt": "An aerial view of an established South Carolina neighborhood of traditional homes "
+               "under mature trees",
         "included": [
             ("Repeat-file handling",
              "A consistent point of contact and a consistent process across multiple files, so each new "
@@ -239,8 +239,9 @@ BENEFITS = [
     ("Responsive Service", "A team focused on keeping the transaction moving without sacrificing accuracy."),
     ("South Carolina Focus", "Title services focused exclusively on properties and transactions in South Carolina."),
     ("Residential to Commercial", "Support for homebuyers, investors, land transactions, lenders, and commercial clients."),
-    ("%s-Backed Protection" % SITE["underwriter_short"],
-     "Local service supported by the resources and financial strength of a national underwriter."),
+    ("National Underwriter Strength",
+     "Local service supported by the resources and financial strength of %s."
+     % SITE["underwriter"]),
 ]
 
 PROCESS = [
@@ -674,9 +675,10 @@ def build_index():
   <div class="wrap coverage">
     <div class="cov-copy reveal">
       <p class="eyebrow">Service area</p>
-      <h2 class="h-xl">South Carolina, start to finish.</h2>
-      <p class="lede">Purple Key works on properties and transactions across South Carolina - from the
-        Lowcountry and the coast to the Midlands, the Pee Dee, and the Upstate.</p>
+      <h2 class="h-xl">Serving South Carolina statewide.</h2>
+      <p class="lede">Purple Key handles title work for properties and transactions across South
+        Carolina - the Upstate, the Midlands, the Pee Dee and the Lowcountry. The same process and the
+        same attention, wherever the file sits.</p>
       <div class="btns">
         <a class="btn btn-p" href="%(order)s">Order Title</a>
         <a class="btn btn-o" href="contact.html">Contact Our Team</a>
@@ -697,12 +699,12 @@ def build_index():
            scd=SC_D, scw=SC_W, sch=SC_H,
            heroimg=picture("hero", [800, 1200, 1800],
                            "(max-width: 1240px) 94vw, 1200px",
-                           "A white South Carolina Lowcountry home with double porches, a standing seam "
-                           "metal roof and a brick paver drive", cls="hero-img", ratio=(16, 9), eager=True),
+                           "A brick South Carolina home with white columns, azaleas in bloom and "
+                           "mature oaks along a circular drive", cls="hero-img", ratio=(16, 9), eager=True),
            aboutimg=picture("about", [600, 900, 1400],
                             "(max-width: 900px) 92vw, 46vw",
-                            "Live oaks draped with Spanish moss shading a South Carolina home on a quiet "
-                            "morning", cls="rounded", ratio=(4, 3)),
+                            "A red brick home framed by mature oaks and a magnolia, with azaleas along "
+                            "the front beds", cls="rounded", ratio=(4, 3)),
            processimg=picture("process", [700, 1000, 1600],
                               "(max-width: 1240px) 94vw, 1200px",
                               "Architectural drawings laid out on a walnut table with stone, wood and "
@@ -770,11 +772,12 @@ def build_about():
                           "dependable title insurance protection with a commitment to making every "
                           "transaction feel organized, responsive, and well cared for.", small=False),
            img=picture("colonial", [600, 800, 1200], "(max-width: 1240px) 94vw, 1200px",
-                       "A brick South Carolina home with white columns and azaleas beneath mature oaks",
+                       "A traditional craftsman home with a deep front porch, stone columns and "
+                       "azaleas in an established South Carolina neighborhood",
                        cls="hero-img", ratio=(3, 2)),
            detail=picture("detail", [600, 900], "(max-width: 900px) 92vw, 42vw",
-                          "A bronze lantern on a shell-stone wall with the shadow of a palmetto frond "
-                          "falling across white stucco", cls="rounded", ratio=(3, 4)),
+                          "Antique brass hardware on white oak cabinetry beside a marble countertop",
+                          cls="rounded", ratio=(3, 4)),
            benefits="".join(
                '      <div class="benefit reveal"><span class="arc" aria-hidden="true">'
                '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.6" fill="none" stroke="currentColor" '
@@ -972,10 +975,10 @@ def build_contact():
     <div class="split-media reveal">%(img)s</div>
     <div class="split-copy reveal">
       <p class="eyebrow">Service area</p>
-      <h2 class="h-xl">Working across South Carolina.</h2>
-      <p>Purple Key handles properties and transactions throughout the state - the Lowcountry and the
-        coast, the Midlands, the Pee Dee, and the Upstate. Send the address and county and we will take
-        it from there.</p>
+      <h2 class="h-xl">Serving South Carolina statewide.</h2>
+      <p>Purple Key handles properties and transactions in every part of the state - the Upstate, the
+        Midlands, the Pee Dee and the Lowcountry. Send the address and county and we will take it from
+        there.</p>
       <p class="fine">Purple Key Title &amp; Escrow is a title agency, not a law firm, and does not
         provide legal advice. South Carolina requires that a licensed South Carolina attorney supervise a
         real estate closing.</p>

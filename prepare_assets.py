@@ -18,18 +18,20 @@ INDEX = os.path.join(LIB, "_bts_previews", "index.txt")
 
 # slot -> library index, target aspect, output widths, vertical crop anchor
 SLOTS = {
-    "hero":        dict(idx=142, ratio=(16, 9), widths=[1800, 1200, 800], fy=0.56),
-    "about":       dict(idx=169, ratio=(4, 3),  widths=[1400, 900, 600],        fy=0.50),
-    "residential": dict(idx=165, ratio=(3, 2),  widths=[1200, 800, 600],        fy=0.50),
-    "investors":   dict(idx=182, ratio=(3, 2),  widths=[1200, 800, 600],        fy=0.52),
-    "land":        dict(idx=179, ratio=(3, 2),  widths=[1200, 800, 600],        fy=0.50),
-    "commercial":  dict(idx=188, ratio=(3, 2),  widths=[1200, 800, 600],        fy=0.50),
-    "escrow":      dict(idx=180, ratio=(3, 2),  widths=[1200, 800, 600],        fy=0.50),
-    "detail":      dict(idx=132, ratio=(3, 4),  widths=[900, 600],              fy=0.46),
-    "process":     dict(idx=123, ratio=(16, 9), widths=[1600, 1000, 700],       fy=0.50),
-    "contact":     dict(idx=209, ratio=(3, 2),  widths=[1200, 800],             fy=0.50),
-    "coverage":    dict(idx=71,  ratio=(16, 9), widths=[1600, 1000, 700],       fy=0.52),
-    "colonial":    dict(idx=70,  ratio=(3, 2),  widths=[1200, 800, 600],        fy=0.54),
+    # Client revision 22 Sep 2026: photography repositioned away from coastal /
+    # tropical toward established Carolina neighbourhoods, traditional brick and
+    # newer upscale residential. No palms, no beach, no dated vehicles.
+    "hero":        dict(idx=182, ratio=(16, 9), widths=[1800, 1200, 800], fy=0.38, fx=0.50),
+    "about":       dict(idx=70,  ratio=(4, 3),  widths=[1400, 900, 600],  fy=0.50, fx=0.50),
+    "colonial":    dict(idx=57,  ratio=(3, 2),  widths=[1200, 800, 600],  fy=0.50, fx=0.50),
+    "residential": dict(idx=15,  ratio=(3, 2),  widths=[1200, 800, 600],  fy=0.50, fx=0.50),
+    "investors":   dict(idx=181, ratio=(3, 2),  widths=[1200, 800, 600],  fy=0.50, fx=0.50),
+    "land":        dict(idx=179, ratio=(3, 2),  widths=[1200, 800, 600],  fy=0.50, fx=0.50),
+    "commercial":  dict(idx=188, ratio=(3, 2),  widths=[1200, 800, 600],  fy=0.50, fx=0.50),
+    "escrow":      dict(idx=180, ratio=(3, 2),  widths=[1200, 800, 600],  fy=0.50, fx=0.50),
+    "detail":      dict(idx=128, ratio=(3, 4),  widths=[900, 600],        fy=0.50, fx=0.50),
+    "process":     dict(idx=123, ratio=(16, 9), widths=[1600, 1000, 700], fy=0.50, fx=0.50),
+    "contact":     dict(idx=209, ratio=(3, 2),  widths=[1200, 800],       fy=0.50, fx=0.50),
 }
 
 
@@ -57,16 +59,19 @@ def grade(im):
     return Image.merge("RGB", (r, g, b))
 
 
-def crop_to(im, ratio, fy):
+def crop_to(im, ratio, fy, fx=0.5):
+    """Crop to the target aspect, anchoring on the part of the frame that
+    matters: fy biases the vertical crop, fx the horizontal."""
     tw, th = ratio
     target = tw / th
     w, h = im.size
     cur = w / h
     if cur > target:                       # too wide -> trim the sides
         nw = int(round(h * target))
-        x = (w - nw) // 2
+        x = int(round((w - nw) * fx))
+        x = max(0, min(w - nw, x))
         box = (x, 0, x + nw, h)
-    else:                                  # too tall -> trim top/bottom to anchor
+    else:                                  # too tall -> trim top/bottom
         nh = int(round(w / target))
         y = int(round((h - nh) * fy))
         y = max(0, min(h - nh, y))
@@ -84,7 +89,7 @@ def main():
             print("MISSING", slot, cfg["idx"])
             continue
         im = Image.open(src).convert("RGB")
-        im = grade(crop_to(im, cfg["ratio"], cfg["fy"]))
+        im = grade(crop_to(im, cfg["ratio"], cfg["fy"], cfg.get("fx", 0.5)))
         tw, th = cfg["ratio"]
         for w in cfg["widths"]:
             if w > im.width:

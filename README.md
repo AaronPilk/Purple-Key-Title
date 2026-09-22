@@ -51,29 +51,35 @@ Pushes to `main` deploy automatically.
 
 ---
 
-## Before launch — items awaiting client sign-off
+## Client revision round 2 — applied 22 Sep 2026
 
-These live in the `SITE` dict at the top of `build.py`. Set the value, run
-`python3 build.py`, commit. Every link, footer line and schema block reads from there.
+From *Purple Key Title FINAL Website Revision Requests*:
 
-- [ ] **Phone number** — `SITE["phone"]`. Currently empty, which renders
-      "Phone number coming soon" on the contact page and in the footer, and omits
-      `telephone` from the structured data. Set it to e.g. `"(843) 555-0100"` and every
-      `tel:` link builds itself.
-- [ ] **Confirm the orders email** — `SITE["email"]` is set to `orders@purplekeytitle.com`
-      on the assumption it follows the domain. Confirm before launch; it is the
-      destination for every Order Title and Contact action on the site.
+- Phone **704-627-3031** wired through the footer, Contact page, click-to-call links
+  and structured data. The "coming soon" placeholder is gone.
+- Order Title mailto now prefills the subject **"New Title Order - Purple Key Title."**
+- Benefit card **"WFG-Backed Protection" → "National Underwriter Strength"**, with WFG
+  still named in the supporting line.
+- Service-area heading → **"Serving South Carolina statewide."** on both the homepage and
+  the Contact page, with the region list reordered so it no longer leads with the coast.
+- **Photography repositioned** away from coastal/tropical toward Rock Hill / Fort Mill /
+  Midlands / Upstate character. Replaced: the tropical hero, the dated About image with the
+  visible older vehicle, the coastal cottage, and the palm-shadow detail shot. The process
+  image was kept, as requested. No palms, no beach, no dated vehicles remain.
+- Header logo enlarged (104px in a 132px header; 70px on mobile) so the crest and tagline
+  stay legible.
+- Process step numbering hardened — one badge per step, list markers suppressed on the
+  `<ol>` and each `<li>`.
+
+## Still open before launch
+
 - [ ] **Confirm the domain** — `SITE["url"]` drives canonicals, the sitemap and OG tags.
-- [ ] **Physical / mailing address** — deliberately absent. The spec says not to publish
-      one unless the company confirms it should be public.
+      Currently `purplekeytitle.com`; no custom domain is attached to the deployment yet.
+- [ ] **Physical / mailing address** — deliberately absent. The client's instruction is not
+      to publish one unless specifically approved later.
 - [ ] **Business hours** — omitted for the same reason.
 - [ ] **Approved WFG logo asset** — the underwriter is referenced in text only. The spec
       permits the WFG logo *only* if an approved asset is supplied.
-- [ ] **Horizontal logo lockup** — the supplied mark is a tall, detailed crest. It is used
-      exactly as approved, at a generous size, in a deliberately spacious header. A
-      horizontal crest-plus-wordmark lockup would let the header shrink without the
-      wordmark becoming unreadable. The spec asks that an alternate be *requested*
-      rather than cropped, so it has not been cropped.
 - [ ] **Legal review of `privacy.html` and `terms.html`** — written for this site rather
       than copied from a sibling, but not reviewed by counsel.
 - [ ] **Social links** — none published yet.
