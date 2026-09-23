@@ -282,10 +282,10 @@ p{margin:0 0 18px}
 .proc-media{margin-top:clamp(32px,4vw,48px);margin-bottom:clamp(40px,5vw,60px)}
 .proc-img img{width:100%;border-radius:var(--r-xl);box-shadow:var(--shadow-lg);background:var(--stone)}
 
-.steps-row,.steps-row > li{list-style:none}
-.steps-row > li::marker{content:""}
+/* no <ol> here on purpose: the badge is the only number, so a browser
+   list-marker can never render a second one beside it. */
 .steps-row{
-  list-style:none;margin:0;padding:0;
+  margin:0;padding:0;
   display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px);
 }
 .step{position:relative;padding-top:8px}

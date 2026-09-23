@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Purple Key Title & Escrow - static site generator.
+"""Purple Key Title LLC - static site generator.
 
 Everything that changes between builds lives in SITE and the copy blocks below.
 Run `python3 build.py` from the repo root; pages are written to the root so
@@ -19,8 +19,8 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 # SITE
 # ---------------------------------------------------------------------------
 SITE = {
-    "name": "Purple Key Title & Escrow",
-    "short": "Purple Key",
+    "name": "Purple Key Title LLC",
+    "short": "Purple Key Title",
     "domain": "purplekeytitle.com",
     "url": "https://purplekeytitle.com",
     "email": "orders@purplekeytitle.com",
@@ -59,7 +59,7 @@ ORDER_HREF = "mailto:%s?subject=%s&body=%s" % (
     urllib.parse.quote("New Title Order - Purple Key Title."),
     urllib.parse.quote(ORDER_BODY),
 )
-ASK_HREF = "mailto:%s?subject=%s" % (SITE["email"], urllib.parse.quote("Question for Purple Key Title & Escrow"))
+ASK_HREF = "mailto:%s?subject=%s" % (SITE["email"], urllib.parse.quote("Question for Purple Key Title LLC"))
 
 
 def tel_href():
@@ -579,13 +579,13 @@ def build_index():
 
     steps = ""
     for i, (t, d) in enumerate(PROCESS, 1):
-        steps += """      <li class="step reveal"><span class="step-n">%d</span>
-        <h3>%s</h3><p>%s</p></li>
+        steps += """      <div class="step reveal" role="listitem"><span class="step-n">%d</span>
+        <h3>%s</h3><p>%s</p></div>
 """ % (i, t, d)
 
     body = head(
-        "Purple Key Title &amp; Escrow | South Carolina Title Insurance",
-        "Purple Key Title &amp; Escrow provides title insurance and title services for homebuyers, "
+        "Purple Key Title LLC | South Carolina Title Insurance",
+        "Purple Key Title LLC provides title insurance and title services for homebuyers, "
         "investors, lenders, land, and commercial transactions throughout South Carolina.",
         "", schema())
     body += header("index.html")
@@ -593,9 +593,9 @@ def build_index():
 
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow">South Carolina Title &amp; Escrow</p>
+    <p class="eyebrow">South Carolina Title Services</p>
     <h1 class="h-hero">The key to confident ownership.</h1>
-    <p class="lede">Purple Key Title &amp; Escrow provides thorough title services, dependable title
+    <p class="lede">Purple Key Title LLC provides thorough title services, dependable title
       insurance, and responsive transaction support for homebuyers, investors, lenders, and real estate
       professionals across South Carolina. Backed by %(uw)s, we combine careful review, clear
       communication, and experienced service to help protect ownership and keep transactions moving.</p>
@@ -615,7 +615,7 @@ def build_index():
     <div class="split-copy reveal">
       <p class="eyebrow">Who we are</p>
       <h2 class="h-xl">A title partner built around trust.</h2>
-      <p>Purple Key Title &amp; Escrow was created to make title protection feel clear, responsive, and
+      <p>Purple Key Title LLC was created to make title protection feel clear, responsive, and
         personal. We bring careful title review, dependable communication, and close attention to every
         detail so buyers, investors, lenders, and real estate professionals can move forward with
         confidence.</p>
@@ -653,7 +653,7 @@ def build_index():
     <p class="eyebrow">Underwriter</p>
     <h2 class="h-lg">Local service. National strength.</h2>
     <span class="rule" aria-hidden="true"></span>
-    <p class="lede">Purple Key Title &amp; Escrow is an authorized title insurance agent of %(uw)s,
+    <p class="lede">Purple Key Title LLC is an authorized title insurance agent of %(uw)s,
       combining responsive local service with the resources and financial strength of a national
       underwriter.</p>
   </div>
@@ -666,8 +666,8 @@ def build_index():
   </div>
   <div class="wrap proc-media reveal">%(processimg)s</div>
   <div class="wrap">
-    <ol class="steps-row">
-%(steps)s    </ol>
+    <div class="steps-row" role="list">
+%(steps)s    </div>
   </div>
 </section>
 
@@ -676,9 +676,9 @@ def build_index():
     <div class="cov-copy reveal">
       <p class="eyebrow">Service area</p>
       <h2 class="h-xl">Serving South Carolina statewide.</h2>
-      <p class="lede">Purple Key handles title work for properties and transactions across South
-        Carolina - the Upstate, the Midlands, the Pee Dee and the Lowcountry. The same process and the
-        same attention, wherever the file sits.</p>
+      <p class="lede">Purple Key provides title services for properties and transactions throughout
+        South Carolina, with responsive service and the same careful attention to every file - wherever
+        the transaction takes place.</p>
       <div class="btns">
         <a class="btn btn-p" href="%(order)s">Order Title</a>
         <a class="btn btn-o" href="contact.html">Contact Our Team</a>
@@ -715,8 +715,8 @@ def build_index():
 
 def build_about():
     body = head(
-        "About | Purple Key Title &amp; Escrow",
-        "Purple Key Title &amp; Escrow helps South Carolina property owners and real estate "
+        "About | Purple Key Title LLC",
+        "Purple Key Title LLC helps South Carolina property owners and real estate "
         "professionals move forward with greater clarity and confidence.",
         "about.html", schema())
     body += header("about.html")
@@ -755,10 +755,10 @@ def build_about():
   <div class="wrap">
     <p class="eyebrow">Underwriter</p>
     <h2 class="h-lg">Local service. National strength.</h2>
-    <p class="lede">Purple Key Title &amp; Escrow is an authorized title insurance agent of %(uw)s,
+    <p class="lede">Purple Key Title LLC is an authorized title insurance agent of %(uw)s,
       combining responsive local service with the resources and financial strength of a national
       underwriter.</p>
-    <p class="fine">Purple Key Title &amp; Escrow is a title agency. It is not a law firm and does not
+    <p class="fine">Purple Key Title LLC is a title agency. It is not a law firm and does not
       provide legal advice. South Carolina requires that a licensed South Carolina attorney supervise a
       real estate closing; we coordinate with the closing attorney and the other parties to the
       transaction.</p>
@@ -766,7 +766,7 @@ def build_about():
 </section>
 </main>
 """ % dict(hero=page_hero("About Purple Key", "Unlocking confidence in every transaction.",
-                          "Purple Key Title &amp; Escrow is focused on one thing: helping South Carolina "
+                          "Purple Key Title LLC is focused on one thing: helping South Carolina "
                           "property owners and real estate professionals move forward with greater "
                           "clarity and confidence. We combine attentive service, thorough title work, and "
                           "dependable title insurance protection with a commitment to making every "
@@ -805,7 +805,7 @@ def build_services():
                s["alt"], cls="svc-img", ratio=(3, 2)),
        s["nav"], s["card_sub"], s["card_desc"])
 
-    body = head("Title Services in South Carolina | Purple Key Title &amp; Escrow",
+    body = head("Title Services in South Carolina | Purple Key Title LLC",
                 "Residential, investor, land, commercial title insurance and escrow support for "
                 "transactions throughout South Carolina.",
                 "services.html", schema())
@@ -892,7 +892,7 @@ def build_resources():
       </details>
 """ % (" open" if i == 0 else "", q, a)
 
-    body = head("Title Insurance Resources &amp; FAQ | Purple Key Title &amp; Escrow",
+    body = head("Title Insurance Resources &amp; FAQ | Purple Key Title LLC",
                 "Straight answers about title insurance, title searches, escrow and the South Carolina "
                 "closing process.",
                 "resources.html", schema() + faq_schema())
@@ -942,8 +942,8 @@ def build_contact():
       </div>
 """ % SITE["phone_display"]
 
-    body = head("Contact | Purple Key Title &amp; Escrow",
-                "Reach Purple Key Title &amp; Escrow to open a title order or ask a question about a "
+    body = head("Contact | Purple Key Title LLC",
+                "Reach Purple Key Title LLC to open a title order or ask a question about a "
                 "South Carolina transaction.",
                 "contact.html", schema())
     body += header("contact.html")
@@ -976,10 +976,10 @@ def build_contact():
     <div class="split-copy reveal">
       <p class="eyebrow">Service area</p>
       <h2 class="h-xl">Serving South Carolina statewide.</h2>
-      <p>Purple Key handles properties and transactions in every part of the state - the Upstate, the
-        Midlands, the Pee Dee and the Lowcountry. Send the address and county and we will take it from
-        there.</p>
-      <p class="fine">Purple Key Title &amp; Escrow is a title agency, not a law firm, and does not
+      <p>Purple Key provides title services for properties and transactions throughout South
+        Carolina, with responsive service and the same careful attention to every file - wherever the
+        transaction takes place. Send the address and county and we will take it from there.</p>
+      <p class="fine">Purple Key Title LLC is a title agency, not a law firm, and does not
         provide legal advice. South Carolina requires that a licensed South Carolina attorney supervise a
         real estate closing.</p>
     </div>
@@ -999,7 +999,7 @@ def build_contact():
 
 LEGAL_PRIVACY = [
     ("What this policy covers",
-     "This policy explains how Purple Key Title &amp; Escrow handles information collected through this "
+     "This policy explains how Purple Key Title LLC handles information collected through this "
      "website. It does not describe how information is handled inside an active title or escrow file; "
      "that is governed by the agreements and disclosures provided with the transaction."),
     ("Information collected through this site",
@@ -1025,7 +1025,7 @@ LEGAL_TERMS = [
      "The content on this website is provided for general information only. It is not legal advice, tax "
      "advice, or a commitment to insure any particular property or transaction."),
     ("Not a law firm",
-     "Purple Key Title &amp; Escrow is a title insurance agency. It is not a law firm and does not "
+     "Purple Key Title LLC is a title insurance agency. It is not a law firm and does not "
      "provide legal advice or representation. South Carolina requires that a licensed South Carolina "
      "attorney supervise a real estate closing, and we coordinate with the closing attorney and the "
      "other parties to the transaction."),
@@ -1034,10 +1034,10 @@ LEGAL_TERMS = [
      "issued policy and by the commitment that precedes it. Nothing on this website expands, alters or "
      "guarantees coverage, clear title, or any closing date."),
     ("Service area",
-     "Purple Key Title &amp; Escrow provides title services for properties and transactions in South "
+     "Purple Key Title LLC provides title services for properties and transactions in South "
      "Carolina."),
     ("Underwriter",
-     "Purple Key Title &amp; Escrow is an authorized title insurance agent of %s. References to the "
+     "Purple Key Title LLC is an authorized title insurance agent of %s. References to the "
      "underwriter on this site describe that agency relationship and nothing more."
      % SITE["underwriter"]),
     ("Changes",
@@ -1118,7 +1118,7 @@ def main():
         "404.html": build_404(),
         "privacy.html": build_legal(
             "Privacy Policy", "Legal", "Privacy Policy",
-            "How Purple Key Title &amp; Escrow handles information in connection with this website.",
+            "How Purple Key Title LLC handles information in connection with this website.",
             LEGAL_PRIVACY, "privacy.html"),
         "terms.html": build_legal(
             "Terms", "Legal", "Terms of Use",

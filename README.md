@@ -1,6 +1,6 @@
-# Purple Key Title &amp; Escrow
+# Purple Key Title LLC
 
-Marketing site for Purple Key Title &amp; Escrow — a **South Carolina only** title agency,
+Marketing site for Purple Key Title LLC — a **South Carolina only** title agency,
 underwritten by **WFG National Title Insurance Company**.
 
 Static HTML/CSS/JS, generated from a config-driven Python script. No framework, no build
@@ -70,6 +70,50 @@ From *Purple Key Title FINAL Website Revision Requests*:
   stay legible.
 - Process step numbering hardened — one badge per step, list markers suppressed on the
   `<ol>` and each `<li>`.
+
+## Client revision round 3 — applied 23 Sep 2026
+
+From *Exact Remaining Website Revisions*:
+
+- **Legal company name is `Purple Key Title LLC`.** Renamed across every visible string,
+  title tag, meta description, Open Graph tag, JSON-LD schema, footer copyright, legal
+  pages and image alt text — 123 references. `Purple Key Title & Escrow` appears nowhere.
+- **The escrow *service* was deliberately left intact** — her note says removing "Escrow"
+  from the company name does not remove the service. "Escrow & Transaction Support" and
+  `escrow-transaction-support.html` are unchanged.
+- Hero eyebrow changed from "South Carolina Title & Escrow" to "South Carolina Title
+  Services" so the line above the headline no longer echoes the old company name.
+  **Flagged for her** — it is the one copy line changed that she did not explicitly list.
+- Service-area supporting sentence replaced with her exact wording.
+- **Process step numbering**: the `<ol>`/`<li>` markup was removed entirely in favour of
+  `<div role="list">` / `<div role="listitem">`. A browser list-marker can no longer render
+  a second number beside the badge — there is now only one number-producing mechanism in
+  both the source and the render. Verified on rendered desktop (1440px) and mobile (390px).
+- OG card caption corrected to "South Carolina Title Insurance".
+
+### Known blocker — corrected logo asset
+
+The supplied logo artwork reads **"PURPLE KEY / TITLE & ESCROW"**, which is not the legal
+company name. Her instruction is explicit: *"Replace it with an approved corrected logo…
+Do not crop, distort, or cover the existing logo wording as a workaround."*
+
+No corrected asset has been supplied, so the original logo is still in place, unaltered.
+Drop the revised file in as `purplekeytitle logo.png` and re-run:
+
+```bash
+python3 prepare_assets.py ~/mnt/higgsfieldimages assets/img   # only if imagery changed
+python3 build.py
+```
+
+…then regenerate the favicons and OG card from the new artwork. Until then, the header,
+footer and social card all still show the old wordmark.
+
+### Note on her round-3 image feedback
+
+Items 2 and 3 of her list asked for the hero and About images to be replaced because they
+"still" showed palms and Spanish moss. Those were replaced on 22 Sep; the live assets were
+verified as the brick Georgian and the brick colonial with a magnolia. She was reviewing a
+cached copy of the page. A hard refresh (Cmd+Shift+R) shows the current images.
 
 ## Still open before launch
 
