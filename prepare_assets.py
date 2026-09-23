@@ -21,7 +21,8 @@ SLOTS = {
     # Client revision 22 Sep 2026: photography repositioned away from coastal /
     # tropical toward established Carolina neighbourhoods, traditional brick and
     # newer upscale residential. No palms, no beach, no dated vehicles.
-    "hero":        dict(idx=56,  ratio=(16, 9), widths=[1800, 1200, 800], fy=0.50, fx=0.50),
+    "hero":        dict(file="assets/source/twilight_modern_farmhouse_elegance.png",
+                    ratio=(16, 9), widths=[1600, 1200, 800], fy=0.50, fx=0.50, raw=True),
     "about":       dict(idx=69,  ratio=(4, 3),  widths=[1400, 900, 600],  fy=0.52, fx=0.55),
     "colonial":    dict(idx=57,  ratio=(3, 2),  widths=[1200, 800, 600],  fy=0.50, fx=0.50),
     "residential": dict(idx=15,  ratio=(3, 2),  widths=[1200, 800, 600],  fy=0.50, fx=0.50),
@@ -30,7 +31,8 @@ SLOTS = {
     "commercial":  dict(idx=188, ratio=(3, 2),  widths=[1200, 800, 600],  fy=0.50, fx=0.50),
     "escrow":      dict(idx=180, ratio=(3, 2),  widths=[1200, 800, 600],  fy=0.50, fx=0.50),
     "detail":      dict(idx=128, ratio=(3, 4),  widths=[900, 600],        fy=0.50, fx=0.50),
-    "process":     dict(idx=123, ratio=(16, 9), widths=[1600, 1000, 700], fy=0.50, fx=0.50),
+    "process":     dict(file="assets/source/modern_title_insurance_office_dashboard.png",
+                    ratio=(3, 2),  widths=[1400, 1000, 700], fy=0.00, fx=0.50, raw=True),
     "contact":     dict(idx=209, ratio=(3, 2),  widths=[1200, 800],       fy=0.50, fx=0.50),
 }
 
@@ -84,12 +86,14 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     manifest = []
     for slot, cfg in SLOTS.items():
-        src = idx.get(cfg["idx"])
+        src = cfg["file"] if cfg.get("file") else idx.get(cfg.get("idx"))
         if not src or not os.path.exists(src):
-            print("MISSING", slot, cfg["idx"])
+            print("MISSING", slot, cfg.get("file") or cfg.get("idx"))
             continue
         im = Image.open(src).convert("RGB")
-        im = grade(crop_to(im, cfg["ratio"], cfg["fy"], cfg.get("fx", 0.5)))
+        im = crop_to(im, cfg["ratio"], cfg["fy"], cfg.get("fx", 0.5))
+        if not cfg.get("raw"):
+            im = grade(im)
         tw, th = cfg["ratio"]
         for w in cfg["widths"]:
             if w > im.width:

@@ -353,20 +353,34 @@ def logo_size(path="assets/img/logo-512.png", fallback=(463, 512)):
 LOGO_W, LOGO_H = logo_size()
 
 
+def _v(path):
+    """Short content hash appended to image URLs. Filenames stay stable, but a
+    changed file gets a new URL, so no reviewer is ever served a cached old image."""
+    import hashlib
+    try:
+        with open(os.path.join(ROOT, path), "rb") as fh:
+            return "?v=" + hashlib.md5(fh.read()).hexdigest()[:8]
+    except Exception:
+        return ""
+
+
 def picture(slot, widths, sizes, alt, cls="", w=None, h=None, eager=False, ratio=None):
     widths = sorted(widths)
     big = widths[-1]
     if ratio and not (w and h):
         w, h = big, int(round(big * ratio[1] / ratio[0]))
-    webp = ", ".join("assets/img/%s-%d.webp %dw" % (slot, x, x) for x in widths)
-    jpg = ", ".join("assets/img/%s-%d.jpg %dw" % (slot, x, x) for x in widths)
+    webp = ", ".join("assets/img/%s-%d.webp%s %dw"
+                     % (slot, x, _v("assets/img/%s-%d.webp" % (slot, x)), x) for x in widths)
+    jpg = ", ".join("assets/img/%s-%d.jpg%s %dw"
+                    % (slot, x, _v("assets/img/%s-%d.jpg" % (slot, x)), x) for x in widths)
     loading = "" if eager else ' loading="lazy" decoding="async"'
     fetch = ' fetchpriority="high"' if eager else ""
     return (
         '<picture class="%s">'
         '<source type="image/webp" srcset="%s" sizes="%s">'
-        '<img src="assets/img/%s-%d.jpg" srcset="%s" sizes="%s" alt="%s" width="%d" height="%d"%s%s>'
-        "</picture>" % (cls, webp, sizes, slot, big, jpg, sizes, alt, w, h, loading, fetch)
+        '<img src="assets/img/%s-%d.jpg%s" srcset="%s" sizes="%s" alt="%s" width="%d" height="%d"%s%s>'
+        "</picture>" % (cls, webp, sizes, slot, big,
+                        _v("assets/img/%s-%d.jpg" % (slot, big)), jpg, sizes, alt, w, h, loading, fetch)
     )
 
 
@@ -697,20 +711,20 @@ def build_index():
 </main>
 """ % dict(uw=SITE["underwriter"], order=ORDER_HREF, cards=cards, benefits=benefits, steps=steps,
            scd=SC_D, scw=SC_W, sch=SC_H,
-           heroimg=picture("hero", [800, 1200, 1800],
+           heroimg=picture("hero", [800, 1200, 1600],
                            "(max-width: 1240px) 94vw, 1200px",
-                           "A stone and timber Southern home at dusk, warm light in the windows and a "
-                           "bluestone walk running through manicured beds", cls="hero-img", ratio=(16, 9),
+                           "A white board-and-batten farmhouse at twilight, warm light in the windows "
+                           "and landscape lighting along the front beds", cls="hero-img", ratio=(16, 9),
                            eager=True),
            aboutimg=picture("about", [600, 900, 1400],
                             "(max-width: 900px) 92vw, 46vw",
                             "A white farmhouse with a wraparound porch and a black metal roof on rolling "
                             "South Carolina pasture, framed by mature hardwoods", cls="rounded",
                             ratio=(4, 3)),
-           processimg=picture("process", [700, 1000, 1600],
+           processimg=picture("process", [700, 1000, 1400],
                               "(max-width: 1240px) 94vw, 1200px",
-                              "Architectural drawings laid out on a walnut table with stone, wood and "
-                              "tile samples", cls="proc-img", ratio=(16, 9)))
+                              "A title professional reviewing title insurance coverage details on a "
+                              "desktop screen in a bright office", cls="proc-img", ratio=(3, 2)))
     body += cta_band() + footer()
     return body
 

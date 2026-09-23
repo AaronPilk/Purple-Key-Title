@@ -136,6 +136,45 @@ Items 2 and 3 of her list asked for the hero and About images to be replaced bec
 verified as the brick Georgian and the brick colonial with a magnolia. She was reviewing a
 cached copy of the page. A hard refresh (Cmd+Shift+R) shows the current images.
 
+## Client image swap — 23 Sep 2026 (round 4)
+
+Two approved files supplied by the client, used exactly as delivered:
+
+| Slot    | File                                          | Handling                                   |
+| ------- | --------------------------------------------- | ------------------------------------------ |
+| hero    | `twilight_modern_farmhouse_elegance.png`      | native 16:9, no crop, no grade             |
+| process | `modern_title_insurance_office_dashboard.png` | 4:3 → 3:2, cropped from the bottom only    |
+
+Originals live in `assets/source/`. `prepare_assets.py` now takes a `file=` path as well as
+a library `idx=`, and a `raw=True` slot skips the house colour grade — client-approved
+artwork ships exactly as supplied.
+
+The process crop takes height off the bottom only (`fy=0.00`). The brief said not to crop
+away the professional, the monitor or the coverage content on screen, and the subject's head
+already touches the top edge of the source, so any top crop would clip it. 3:2 rather than
+16:9 keeps the desk items intact too.
+
+**Image URLs are now cache-busted.** Every `assets/img/*` URL carries `?v=<content hash>`.
+Filenames are unchanged, so nothing else had to move, but a changed image always gets a new
+URL. This was added because the client twice reviewed a cached page and reported images as
+unchanged when they had already been replaced.
+
+### Open question for the client — the office/dashboard image
+
+Worth raising before launch. It is on the site as instructed, but:
+
+1. It shows a **Purple Key client portal that does not exist**. On the site it implies the
+   company offers a customer-facing coverage dashboard. The original brief was explicit
+   about not advertising things the company does not have.
+2. It carries a **second, conflicting logo and tagline** — a house mark reading
+   "PURPLE KEY TITLE · PEOPLE PROPERTY POSSIBILITIES" — which is not the approved crest and
+   not "Unlocking Legacy. Securing Tomorrows." Two brand marks now appear on one page. If
+   this house mark is the corrected logo the brief asked for, the real file is still needed.
+3. The wall art, mug and notebook carry invented slogans. Earlier rounds barred fabricated
+   signage in imagery.
+
+None of this blocks the build; it is a client decision.
+
 ## Still open before launch
 
 - [ ] **Confirm the domain** — `SITE["url"]` drives canonicals, the sitemap and OG tags.
