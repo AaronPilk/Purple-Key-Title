@@ -108,6 +108,27 @@ python3 build.py
 …then regenerate the favicons and OG card from the new artwork. Until then, the header,
 footer and social card all still show the old wordmark.
 
+### Imagery update 23 Sep 2026 (round 3b)
+
+The hero and About images were both refined brick colonials and read as near-duplicates of
+each other. Her own About brief asks for "a second image that complements the hero but is
+not a duplicate", so both were replaced:
+
+| Slot  | Was                         | Now                                                        |
+| ----- | --------------------------- | ---------------------------------------------------------- |
+| hero  | brick Georgian (idx 182)    | stone + timber transitional home at dusk (idx 56)           |
+| about | brick colonial (idx 70)     | white farmhouse on rolling pasture, golden hour (idx 69)    |
+
+Neither red brick colonial is used anywhere on the site now. Both replacements sit inside
+her stated palette — "refined brick, stone, painted brick, traditional or transitional
+Southern home, tasteful landscaping, mature hardwoods".
+
+**Worth her eye:** the new hero is the most contemporary image on the site and it is shot at
+blue hour rather than bright daylight. It is explicitly permitted by the brief ("stone…
+transitional Southern home") but if she wants brighter and more traditional, index 7
+(painted stucco and timber on an established street, full daylight) is the ready alternative
+— change `"hero"` in `prepare_assets.py` to `idx=7` and re-run.
+
 ### Note on her round-3 image feedback
 
 Items 2 and 3 of her list asked for the hero and About images to be replaced because they

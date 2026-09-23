@@ -21,8 +21,8 @@ SLOTS = {
     # Client revision 22 Sep 2026: photography repositioned away from coastal /
     # tropical toward established Carolina neighbourhoods, traditional brick and
     # newer upscale residential. No palms, no beach, no dated vehicles.
-    "hero":        dict(idx=182, ratio=(16, 9), widths=[1800, 1200, 800], fy=0.38, fx=0.50),
-    "about":       dict(idx=70,  ratio=(4, 3),  widths=[1400, 900, 600],  fy=0.50, fx=0.50),
+    "hero":        dict(idx=56,  ratio=(16, 9), widths=[1800, 1200, 800], fy=0.50, fx=0.50),
+    "about":       dict(idx=69,  ratio=(4, 3),  widths=[1400, 900, 600],  fy=0.52, fx=0.55),
     "colonial":    dict(idx=57,  ratio=(3, 2),  widths=[1200, 800, 600],  fy=0.50, fx=0.50),
     "residential": dict(idx=15,  ratio=(3, 2),  widths=[1200, 800, 600],  fy=0.50, fx=0.50),
     "investors":   dict(idx=181, ratio=(3, 2),  widths=[1200, 800, 600],  fy=0.50, fx=0.50),

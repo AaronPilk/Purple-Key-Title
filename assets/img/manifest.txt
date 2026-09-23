@@ -1,0 +1,11 @@
+hero	1800	1012
+about	1400	1050
+colonial	1200	800
+residential	1200	800
+investors	1200	800
+land	1200	800
+commercial	1200	800
+escrow	1200	800
+detail	900	1200
+process	1600	900
+contact	1200	800

@@ -699,12 +699,14 @@ def build_index():
            scd=SC_D, scw=SC_W, sch=SC_H,
            heroimg=picture("hero", [800, 1200, 1800],
                            "(max-width: 1240px) 94vw, 1200px",
-                           "A brick South Carolina home with white columns, azaleas in bloom and "
-                           "mature oaks along a circular drive", cls="hero-img", ratio=(16, 9), eager=True),
+                           "A stone and timber Southern home at dusk, warm light in the windows and a "
+                           "bluestone walk running through manicured beds", cls="hero-img", ratio=(16, 9),
+                           eager=True),
            aboutimg=picture("about", [600, 900, 1400],
                             "(max-width: 900px) 92vw, 46vw",
-                            "A red brick home framed by mature oaks and a magnolia, with azaleas along "
-                            "the front beds", cls="rounded", ratio=(4, 3)),
+                            "A white farmhouse with a wraparound porch and a black metal roof on rolling "
+                            "South Carolina pasture, framed by mature hardwoods", cls="rounded",
+                            ratio=(4, 3)),
            processimg=picture("process", [700, 1000, 1600],
                               "(max-width: 1240px) 94vw, 1200px",
                               "Architectural drawings laid out on a walnut table with stone, wood and "
